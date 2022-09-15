@@ -1,8 +1,7 @@
-
 package sla.library.domain.entity;
 
+public class Cliente implements Entidade {
 
-public class Cliente {
     private Integer id;
     private String nome;
     private Endereco endereco;
@@ -13,6 +12,10 @@ public class Cliente {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
+    }
+
+    public Cliente(Integer id) {
+        this.id = id;
     }
 
     public Cliente() {
@@ -50,6 +53,37 @@ public class Cliente {
         this.telefone = telefone;
     }
 
+    @Override
+    public String toSQLParams() {
+        return "("
+                + id + ",\""
+                + nome + "\",\""
+                + endereco.getCep() + "\","
+                + telefone.getId() + ")";
+    }
 
+    @Override
+    public String getParams() {
+        return "( id,nome,endereco_cep,telefone_id)";
+    }
+
+    @Override
+    public String getName() {
+        return "cliente";
+    }
+
+    @Override
+    public String getKey() {
+        return id + "";
+    }
+
+    @Override
+    public String getUpdateParams() {
+        return "set id =" + id + ","
+                + "set nome =\"" + nome + "\","
+                + "set endereco =\"" + endereco.getCep() + "\","
+                + "set telefone =" + telefone.getId() + " ";
+
+    }
 
 }
