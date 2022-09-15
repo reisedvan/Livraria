@@ -1,7 +1,11 @@
 package sla.library.domain.repository;
 
 import java.util.Optional;
+import sla.library.connection.ConectorBD;
+import sla.library.domain.entity.Cliente;
+import sla.library.domain.entity.Endereco;
 import sla.library.domain.entity.Entidade;
+import sla.library.domain.entity.Telefone;
 
 public class Repository {
 
@@ -10,7 +14,7 @@ public class Repository {
                 + e.getName() + " "
                 + e.getParams() + " values "
                 + e.toSQLParams();
-        System.out.println(sql);
+        ConectorBD.execute(sql);
     }
 
     public Optional find(Entidade e) {
@@ -18,8 +22,8 @@ public class Repository {
                 + e.getName()
                 + " where id = "
                 + e.getKey();
-        System.out.println(sql);
-        return null;
+        ConectorBD.executeQuery(sql);
+        return Optional.of(new Cliente(15, "Ex", new Endereco("A", "V", "b", "c"),new Telefone(1,"123") ));
     }
 
     public void delete(Entidade e) {
@@ -27,7 +31,8 @@ public class Repository {
                 + e.getName()
                 + " where id = "
                 + e.getKey();
-        System.out.println(sql);
+        ConectorBD.execute(sql);
+
     }
 
     public void update(Entidade e) {
@@ -36,6 +41,7 @@ public class Repository {
                 + e.getUpdateParams()
                 + " where id = "
                 + e.getKey();
+        ConectorBD.execute(sql);
     }
 
 }
