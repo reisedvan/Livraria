@@ -1,10 +1,7 @@
-
 package sla.library.domain.entity;
 
+public class Endereco implements Entidade {
 
-
-
-public class Endereco {
     public String cep;
     public String uf;
     public String cidade;
@@ -12,8 +9,10 @@ public class Endereco {
     public String rua;
     public String numero;
 
-    
-    
+    public Endereco(String cep) {
+        this.cep = cep;
+    }
+
     public Endereco(String cep, String uf, String cidade, String bairro) {
         this.cep = cep;
         this.uf = uf;
@@ -23,7 +22,6 @@ public class Endereco {
         this.numero = "";
     }
 
-    
     public Endereco(String cep, String uf, String cidade, String bairro, String rua, String numero) {
         this.cep = cep;
         this.uf = uf;
@@ -33,9 +31,6 @@ public class Endereco {
         this.numero = numero;
     }
 
-    
-    
-    
     public String getCep() {
         return cep;
     }
@@ -83,6 +78,59 @@ public class Endereco {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    /*
+    cep,
+    uf,
+    cidade,
+    bairro,
+    rua,
+    numero,
     
-    
+     */
+    @Override
+    public String toSQLParams() {
+        return "(\"" + cep + "\","
+                + "\"" + uf + "\","
+                + "\"" + cidade + "\","
+                + "\"" + bairro + "\","
+                + "\"" + rua + "\","
+                + "" + numero + ")";
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "cep=" + cep + ", uf=" + uf + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + '}';
+    }
+
+    @Override
+    public String getName() {
+        return "endereco";
+    }
+
+    @Override
+    public String getParams() {
+        return "(cep,"
+                + "uf,"
+                + "cidade,"
+                + "bairro,"
+                + "rua,"
+                + "numero)";
+    }
+
+    @Override
+    public String getUpdateParams() {
+        return "set cep=" + cep + ","
+                + "set uf=" + uf + ","
+                + "set cidade=" + cidade + ","
+                + "set bairro=" + bairro + ","
+                + "set rua=" + rua + ","
+                + "set numero=" + numero + ")";
+    }
+
+    @Override
+    public String getKey() {
+        return cep;
+    }
+
 }

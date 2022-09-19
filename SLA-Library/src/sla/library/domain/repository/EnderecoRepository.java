@@ -5,10 +5,7 @@
  */
 package sla.library.domain.repository;
 
-/**
- *
- * @author MKillua
- */
+
 public class EnderecoRepository  extends Repository{
     
 }

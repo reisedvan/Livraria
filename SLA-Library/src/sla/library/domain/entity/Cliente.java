@@ -54,6 +54,11 @@ public class Cliente implements Entidade {
     }
 
     @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + '}';
+    }
+
+    @Override
     public String toSQLParams() {
         return "("
                 + id + ",\""

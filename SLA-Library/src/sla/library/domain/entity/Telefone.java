@@ -5,8 +5,8 @@ public class Telefone implements Entidade {
     private Integer id;
     private String numero;
 
-    public Telefone(Integer id) {
-        this.id=id;
+    public Telefone(String numero) {
+        this.numero = numero;
     }
 
     public Telefone(Integer id, String numero) {
@@ -39,6 +39,11 @@ public class Telefone implements Entidade {
     }
 
     @Override
+    public String toString() {
+        return "Telefone{" + "id=" + id + ", numero=" + numero + '}';
+    }
+
+    @Override
     public String getParams() {
         return "( id,numero)";
     }
@@ -50,16 +55,14 @@ public class Telefone implements Entidade {
 
     @Override
     public String getKey() {
-        return id + "";
+        return numero + "";
     }
 
     @Override
     public String getUpdateParams() {
-       return "set id="+ id + ","
-               + "set numero=\""+ numero + "\" ";
-    
+        return "set id=" + id + ","
+                + "set numero=\"" + numero + "\" ";
+
     }
-    
-    
-    
+
 }
